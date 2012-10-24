@@ -1,0 +1,8 @@
+Package: raspicommdemo
+Version: 1.0
+Essential: no
+Architecture: all
+Depends: libraspicomm, libraspicommdisplay, libraspicommsteprocker
+Maintainer: Martin Kramer <martin.kramer@amescon.com>
+Provides: raspicommdemo
+Description: Demo application that uses libraspicomm, libraspicommdisplay and libraspicommsteprocker

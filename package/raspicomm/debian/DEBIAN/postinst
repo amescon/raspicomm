@@ -1,0 +1,60 @@
+#! /bin/sh
+
+# The content of the raspberry pi revision
+# Content of the file /etc/init.d/rtc.sh
+RTC_REVISION1="#! /bin/sh\n\n# Activate the real time clock\necho ds1307 0x68 > /sys/class/i2c-adapter/i2c-0/new_device"
+RTC_REVISION2="#! /bin/sh\n\n# Activate the real time clock\necho ds1307 0x68 > /sys/class/i2c-adapter/i2c-1/new_device"
+
+# Content of the file /etc/raspicomm.conf
+CONFIG_FILE_REVISION1="REV=1"
+CONFIG_FILE_REVISION2="REV=2"
+
+revision=0
+validinput=0
+
+# Repeat the question 
+while [ $validinput -eq 0 ]; do
+
+	# Ask the user which revision of the raspberry pi he is using
+	echo -n "Please specify the revision of the raspberry pi you are using [1,2]: "
+	
+	# read user input
+	read revision
+	
+	if [ $revision -eq 1 ] ; then
+		validinput=1	
+	elif [ $revision -eq 2 ] ; then
+		validinput=1
+	fi
+
+done
+
+# Tell the user what we're doing
+echo "deploying config file /etc/raspicomm.conf and real time clock startup script /etc/init.d/rtc.sh for raspberry pi revision $revision"
+
+# Depending on the revision
+# 1) Deploy a startup script for the real time clock
+# 2) Deploy a config file that allows the raspicomm api to use the revision as a default
+if [ $revision -eq 1 ]; then
+	echo $RTC_REVISION1 > /etc/init.d/rtc.sh
+	echo $CONFIG_FILE_REVISION1 > /etc/raspicomm.conf
+else
+	echo $RTC_REVISION2 > /etc/init.d/rtc.sh
+	echo $CONFIG_FILE_REVISION2 > /etc/raspicomm.conf
+fi
+
+echo Set /etc/init.d/rtc.sh to autostart
+
+# Make the file executable
+chmod +x /etc/init.d/rtc.sh
+
+# Set the real time clock to be automatically started
+update-rc.d rtc.sh defaults 80
+
+# Load the rtc module
+modprobe rtc-ds1307
+
+# Execute the script right now to create the rtc i2c device
+/etc/init.d/rtc.sh
+
+exit 0

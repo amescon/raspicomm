@@ -1,0 +1,7 @@
+*.so
+*.deb
+raspicommd
+raspicommdemo
+package/daemon/debian/etc
+docs/out
+*.swp

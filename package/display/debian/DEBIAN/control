@@ -1,0 +1,8 @@
+Package: libraspicommdisplay
+Version: 1.0
+Essential: no
+Architecture: all
+Depends: libraspicomm
+Maintainer: Martin Kramer <martin.kramer@amescon.com>
+Provides: libraspicommdisplay
+Description: Library that uses the i2c interface to communicate with a lcd display

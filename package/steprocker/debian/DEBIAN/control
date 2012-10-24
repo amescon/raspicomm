@@ -1,0 +1,8 @@
+Package: libraspicommsteprocker
+Version: 1.0
+Essential: no
+Architecture: all
+Depends: libraspicomm
+Maintainer: Martin Kramer <martin.kramer@amescon.com>
+Provides: libraspicommsteprocker
+Description: Library that implements the tmcl (trinamic motion control language) used by the steprocker controller

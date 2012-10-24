@@ -1,0 +1,13 @@
+#! /bin/sh
+
+# remove real time clock script from autostart
+echo removing /etc/init.d/rtc.sh from autostart
+update-rc.d rtc.sh remove
+
+# remove real time clock autostart script /etc/init.d/rtc.sh
+echo removing /etc/init.d/rtc.sh
+rm /etc/init.d/rtc.sh
+
+# remove raspicomm.conf
+echo removing /etc/raspicomm.conf
+rm /etc/raspicomm.conf

@@ -1,0 +1,7 @@
+Package: raspicommd
+Version: 1.0
+Essential: no
+Architecture: all
+Depends: libraspicomm
+Maintainer: Martin Kramer <martin.kramer@amescon.com>
+Description: The RasPiComm Ethernet Daemon

@@ -1,0 +1,7 @@
+Package: libraspicomm
+Version: 1.0
+Essential: no
+Architecture: all
+Maintainer: Martin Kramer <martin.kramer@amescon.com>
+Provides: raspicomm
+Description: The RasPiComm Library
