@@ -26,7 +26,19 @@ Download the raspicomm source code, compile it, package it, install the packages
 ``cd raspicomm``  
 ``sudo ./makeall.sh``
 
+#### Selecting the raspberry pi revision ####
 When installing the raspicomm api, you are asked to specify the raspberry pi revision you are using, by entering '1' or '2'.
+
+If you're not sure which version you've got, take a look at the following pictures.
+e.g. Revision 2 sports a mounting hole in the top right corner, right below the leds.
+
+Picture of *Revision 1* from wikimedia.org:  
+<img width="320px" src="http://upload.wikimedia.org/wikipedia/commons/9/90/Front_of_Raspberry_Pi.jpg" />  
+Click [here](http://upload.wikimedia.org/wikipedia/commons/9/90/Front_of_Raspberry_Pi.jpg) to open the image.
+
+Picture of *Revision 2* from raspberrypi.org:  
+<img width="320px" src="http://www.raspberrypi.org/wp-content/uploads/2012/09/sony-rasp-pi-1024x728.jpg" />  
+Click [here](http://www.raspberrypi.org/wp-content/uploads/2012/09/sony-rasp-pi-1024x728.jpg) to open the image.
 
 ### Test your installation ###
  - Verify if your real time clock is working by invoking:  
