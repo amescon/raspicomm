@@ -2,8 +2,16 @@
 
 # The content of the raspberry pi revision
 # Content of the file /etc/init.d/rtc.sh
-RTC_REVISION1="#! /bin/sh\n\n# Activate the real time clock\necho ds1307 0x68 > /sys/class/i2c-adapter/i2c-0/new_device"
-RTC_REVISION2="#! /bin/sh\n\n# Activate the real time clock\necho ds1307 0x68 > /sys/class/i2c-adapter/i2c-1/new_device"
+RTC_SCRIPT_HEADER="#! /bin/sh\n\n### BEGIN INIT INFO\n# Provides:          rtc\n# Required-Start:    $remote_fs $syslog\n# Required-Stop:     $local_fs\n# Default-Start:     2 3 4 5\n# Default-Stop:      0 1 6\n# Short-Description: Creates the real time clock i2c device when executed\n### END INIT INFO\n\n# Activate the real time clock\n"
+
+RTC_SCRIPT_BODY_REVISION1="echo ds1307 0x68 > /sys/class/i2c-adapter/i2c-0/new_device"
+RTC_SCRIPT_BODY_REVISION2="echo ds1307 0x68 > /sys/class/i2c-adapter/i2c-1/new_device"
+
+RTC_SCRIPT_REVISION1=$RTC_SCRIPT_HEADER$RTC_SCRIPT_BODY_REVISION1
+RTC_SCRIPT_REVISION2=$RTC_SCRIPT_HEADER$RTC_SCRIPT_BODY_REVISION2
+
+#RTC_REVISION1="#! /bin/sh\n\n# Activate the real time clock\necho ds1307 0x68 > /sys/class/i2c-adapter/i2c-0/new_device"
+#RTC_REVISION2="#! /bin/sh\n\n# Activate the real time clock\necho ds1307 0x68 > /sys/class/i2c-adapter/i2c-1/new_device"
 
 # Content of the file /etc/raspicomm.conf
 CONFIG_FILE_REVISION1="REV=1"
@@ -36,10 +44,10 @@ echo "deploying config file /etc/raspicomm.conf and real time clock startup scri
 # 1) Deploy a startup script for the real time clock
 # 2) Deploy a config file that allows the raspicomm api to use the revision as a default
 if [ $revision -eq 1 ]; then
-	echo $RTC_REVISION1 > /etc/init.d/rtc.sh
+	echo $RTC_SCRIPT_REVISION1 > /etc/init.d/rtc.sh
 	echo $CONFIG_FILE_REVISION1 > /etc/raspicomm.conf
 else
-	echo $RTC_REVISION2 > /etc/init.d/rtc.sh
+	echo $RTC_SCRIPT_REVISION2 > /etc/init.d/rtc.sh
 	echo $CONFIG_FILE_REVISION2 > /etc/raspicomm.conf
 fi
 
