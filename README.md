@@ -35,7 +35,7 @@ Additional Steps are required, see below
    ``sudo modprobe i2c-dev``  
    ``sudo modprobe i2c-bcm2708``  
 
-*Thanks to Forum member **CoolWater** for the instructions!*
+*Thanks to Forum member CoolWater for the instructions!*
 
 ### Setup your raspicomm ###
 
