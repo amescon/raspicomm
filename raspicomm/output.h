@@ -1,5 +1,9 @@
 /// \file
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /// Output flags that are used for manipulation of the outputs.
 /// @see raspicomm_SetOutputs
 /// @see raspicomm_GetOutputs
@@ -12,3 +16,7 @@ typedef enum
   /// Output/LED 2 (Red)
   LED2 = 1 << 1
 } Outputs;
+
+#ifdef __cplusplus
+}
+#endif

@@ -18,6 +18,9 @@
 #define UART0_BASE               (BCM2708_PERI_BASE + 0x201000) /* Uart 0 */
 #define UART1_BASE               (BCM2708_PERI_BASE + 0x215000) /* Uart 1 (not used) */
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 typedef struct {
   char* mem;
@@ -74,3 +77,6 @@ typedef enum {
 
 } GPIO;
 
+#ifdef __cplusplus
+}
+#endif

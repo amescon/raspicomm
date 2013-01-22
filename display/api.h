@@ -1,6 +1,10 @@
 /// \file
 /// \addtogroup Apis
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /// <summary>Result Code of a display api call</summary>
 typedef enum {
 
@@ -66,3 +70,7 @@ DisplayResult display_SetXY(char col, char row);
 
 /// <summary>Clears the screen.</summary>
 DisplayResult display_ClearScreen(void);
+
+#ifdef __cplusplus
+}
+#endif

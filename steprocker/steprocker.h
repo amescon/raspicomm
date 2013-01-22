@@ -8,6 +8,10 @@
 #include "../raspicomm/api.h"
 #include "api.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /// struct of tmcl command that gets send to the steprocker 
 struct tmclcmd
 {
@@ -84,3 +88,6 @@ typedef enum {
 
 } StepRockerCommands;
 
+#ifdef __cplusplus
+}
+#endif

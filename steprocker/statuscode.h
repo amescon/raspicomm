@@ -1,3 +1,7 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef enum {
 	STATUS_SUCCESS = 100,
 	STATUS_CMD_LOADED = 101,
@@ -36,3 +40,7 @@ int steprocker_IsValidStatusCode(StatusCode code)
     default: return 0;
   }
 }
+
+#ifdef __cplusplus
+}
+#endif

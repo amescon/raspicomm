@@ -9,6 +9,11 @@
 
 #define SPI0_DEV "/sys/class/gpio/gpio17/value"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 // SPI specific settings
 typedef struct
 {
@@ -84,3 +89,7 @@ ApiResult raspicomm_InitRs485(Baudrate baudrate, Databits databits, Stopbits sto
 
 ApiResult spi_StartThread(void);
 void spi_InitMax3140(void);
+
+#ifdef __cplusplus
+}
+#endif

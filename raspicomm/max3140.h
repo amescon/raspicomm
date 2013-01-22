@@ -1,3 +1,7 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef enum {
 	   BAUDRATE_600 = 600,
 	  BAUDRATE_1200 = 1200,
@@ -51,3 +55,7 @@ typedef enum {
 char max3140_GetBaudrateIndex(Baudrate baudrate);
 
 unsigned int max3140_GetUARTConfiguration(Baudrate baudrate, Databits databits, Stopbits stopbits, Parity parity);
+
+#ifdef __cplusplus
+}
+#endif

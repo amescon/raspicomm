@@ -1,5 +1,9 @@
 /// \file
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /// Declares the ApiError enum.
 /// Every api function returns an  ApiStatus code that specifies the success of the operation
 typedef enum 
@@ -59,3 +63,7 @@ typedef enum
   ERR_INIT_LOCK
   
 } ApiResult;
+
+#ifdef __cplusplus
+}
+#endif

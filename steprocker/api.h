@@ -4,6 +4,11 @@
 
 #include "statuscode.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 /// <summary>Steprocker api result codes.</summary>
 /// use steprocker_TranslateResult() to convert them into a human readable string 
 typedef enum {
@@ -124,3 +129,7 @@ StepRockerResult steprocker_CalculateUsingAccumulatorAndConstantValue();
 StepRockerResult steprocker_CalculateUsingAccumulatorAndXRegister();
 StepRockerResult steprocker_CopyAccumulatorToAxisParameter();
 StepRockerResult steprocker_CopyAccumulatorToGlobalParameter();
+
+#ifdef __cplusplus
+}
+#endif

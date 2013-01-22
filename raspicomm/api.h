@@ -19,6 +19,10 @@
 #include "max3140.h"
 #include "revision.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /// <summary>initializes the RasPiComm</summary>
 /// Must be the first function to call
 extern ApiResult raspicomm_Init(Revision revision);
@@ -78,3 +82,7 @@ extern ApiResult raspicomm_InitRs485(Baudrate baudrate, Databits databits, Stopb
 /// <param name="length">The length of the bytes to sent to the spi interface.</param>
 /// <param name="sentBytes">Is set to the number of bytes sent</param>
 extern ApiResult raspicomm_spi_write(char* str, int length, int* sentBytes);
+
+#ifdef __cplusplus
+}
+#endif

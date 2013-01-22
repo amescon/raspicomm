@@ -1,3 +1,7 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /// \file
 /// Defines the raspberrypi revisions
 typedef enum
@@ -15,3 +19,7 @@ typedef enum
   REVISION_LATEST = 2
 
 } Revision;
+
+#ifdef __cplusplus
+}
+#endif

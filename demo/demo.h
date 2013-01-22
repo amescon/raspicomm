@@ -7,6 +7,10 @@
 #include <getopt.h> /* used for argument evaluation in handle_arguments */
 #include <unistd.h> /* used for usleep */
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /// <summary>Available commands</summary>
 enum 
 {
@@ -61,3 +65,7 @@ enum
 
 /* forward declaration */
 void enter_interactive_mode(void);
+
+#ifdef __cplusplus
+}
+#endif

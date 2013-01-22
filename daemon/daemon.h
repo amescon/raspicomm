@@ -19,6 +19,10 @@
 // include raspicomm api
 #include "../raspicomm/api.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define LOG
 
 /// <summary>Internal struct that holds the daemons settings</summary>
@@ -58,3 +62,7 @@ void sr_receive(char c);
 void daemon_log(const char* msg, ApiResult result);
 
 int write_pidfile(const char* file);
+
+#ifdef __cplusplus
+}
+#endif

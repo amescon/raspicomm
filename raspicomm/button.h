@@ -1,4 +1,9 @@
 /// \file
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /// Defines the Joystick Buttons
 typedef enum
 {
@@ -9,3 +14,7 @@ typedef enum
   Pressed = 1 << 4
 
 } Buttons;
+
+#ifdef __cplusplus
+}
+#endif
