@@ -11,12 +11,31 @@ If you want to know what the raspicomm is, you may want to take a look at the of
 e.g. 
 [Adafruit Occidentalis v0.2](http://learn.adafruit.com/adafruit-raspberry-pi-educational-linux-distro/occidentalis-v0-dot-2)
 
-1. Download the Adafruit Image [here](http://adafruit-raspberry-pi.s3.amazonaws.com/Occidentalisv02.zip)  
+#### Distributions ####
+- Adafruit Occidentalis ([download the image](http://adafruit-raspberry-pi.s3.amazonaws.com/Occidentalisv02.zip))  
+- Raspbian v3.2.27+ ([download the image](http://downloads.raspberrypi.org/images/raspbian/2012-12-16-wheezy-raspbian/2012-12-16-wheezy-raspbian.zip))  
+Additional Steps are required, see below  
+
+1. Download the Image [here](http://adafruit-raspberry-pi.s3.amazonaws.com/Occidentalisv02.zip)  
 2. Write it to the SD card  
    You can find further instructions for setting up your SD-Card [here](http://elinux.org/RPi_Easy_SD_Card_Setup).  
 3. Boot from the SD card  
 4. Configure your distribution on first boot
 
+#### Additional steps required for Raspbian ####
+
+1. Check that you're running the Kernel Version 3.2.27+:  
+   ``uname -r``
+2. Install the i2c-tools:  
+   sudo apt-get install i2c-tools
+3. Edit /etc/modules and the following modules:  
+   - i2c-bcm2708
+   - i2c-dev
+4. Load the modules:  
+   ``sudo modprobe i2c-dev``  
+   ``sudo modprobe i2c-bcm2708``  
+
+*Thanks to Forum member **CoolWater** for the instructions!*
 
 ### Setup your raspicomm ###
 
