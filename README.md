@@ -73,8 +73,10 @@ Click [here](http://www.raspberrypi.org/wp-content/uploads/2012/09/sony-rasp-pi-
 
 For further information you can
 
-- checkout the demo source code ('demo/demo.c') or from the github page or
-- read the Api Overview below.
+- checkout the demo source code ('demo/demo.c') or from the github page or  
+- read the Api Overview below.  
+- visit the [support forum](http://www.amescon.com/forum.aspx?fwd=viewforum.php%3Ff%3D2)  
+- view the [FAQ on our forum](http://www.amescon.com/forum.aspx?fwd=viewtopic.php%3Ff%3D2%26t%3D14)  
 
 ## RasPiComm API Overview ##
 
@@ -88,6 +90,14 @@ The RasPiComm sourcecode contains the following folders:
 - package - folder that holds scripts to create .deb packages.
 
 *Attention: Executing the raspicomm api requires superuser privileges!*
+
+### RS-232 Support ###
+
+There is no api support for the RS-232 port, as you can use standard linux libraries for accessing the serial port. The device name is '/dev/ttyAMA0'.
+
+For example:  
+``int fd = open("/dev/ttyAMA0", O_RDWR | O_NOCTTY | O_NDELAY);``  
+``...``  
 
 ## raspicomm - main library ##
 
