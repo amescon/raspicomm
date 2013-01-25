@@ -116,7 +116,7 @@ void spi_InitMax3140(void)
 typedef struct {
 
 		int file;
-
+    volatile char isReady; // is set by the starting thread
 } ThreadParam;
 
 // polling thread that blocks as long as no data is received
@@ -146,6 +146,9 @@ void *spi_PollingThread(void* args)
 	while (_SPISettings.ShutdownPollingThread == 0)
 	{
 		lseek(pParam->file, 0, SEEK_SET); // reset the file to the start of the file
+
+    // signal the calling thread, that we're ready to go
+    pParam->isReady = 1;
 
 		retValue = poll(fds, fdCount, 500); // use a timeout so that we can check for shutdown
 
@@ -200,8 +203,18 @@ ApiResult spi_StartThread(void)
 
 	int value;
 	if (result == SUCCESS)
+  {
 	  if ( (value = pthread_create(&_SPISettings.PollingThread, NULL, spi_PollingThread, pParam)) != 0 )
+    {
 	    result = ERR_SPI_CREATE_THREAD;
+    }
+    else 
+    {
+      // wait for the thread to spin up and start working
+      while (!pParam->isReady)
+        usleep(10000);
+    }
+  }
 
 	return result;
 }
