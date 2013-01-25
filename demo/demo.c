@@ -38,6 +38,7 @@ void enter_display_type_mode()
   char x = 0, y = 0;
 
   display_ClearScreen();
+  display_SendCommand(DI_CMD_DISPLAY_ON);
   display_SetXY(0, 0);
 
   printf("TYPE MODE: ESC to cancel, ENTER for newline\n");
@@ -73,7 +74,9 @@ void enter_joystick_display_mode()
   Buttons buttons;
   ApiResult result;
 
+  // initialize the display
   display_ClearScreen();
+  display_SendCommand(DI_CMD_DISPLAY_ON);
 
   // start at the middle
   char x = MAXCOLUMNS / 2;
@@ -156,7 +159,7 @@ void enter_display_mode()
       case '-': result = display_SendCommand(DI_CMD_DISPLAY_OFF); break;
       case '+': result = display_SendCommand(DI_CMD_DISPLAY_ON); break;
       case 'i': result = display_SendCommand(inverse ? DI_CMD_DISPLAY_INV_ON : DI_CMD_DISPLAY_INV_OFF); inverse = inverse ? 0 : 1; break;
-      case 'j':  enter_joystick_display_mode(); break;
+      case 'j': enter_joystick_display_mode(); break;
       case 't': enter_display_type_mode(); break;
       case 'c': result = display_ClearScreen(); break;
     }
