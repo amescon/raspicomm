@@ -44,6 +44,9 @@ enum
   /// <summary>Enter the interactice type to display mode.</summary>
   CMD_TYPE2DISPLAY,
 
+  /// <summary>Enter the joystick to display mode.</summary>
+  CMD_JOY2DISPLAY,
+
   /// <summary>Enter the display mode.</summary>
   CMD_DISPLAY_MODE,
 

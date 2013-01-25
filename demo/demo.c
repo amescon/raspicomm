@@ -25,6 +25,7 @@ void print_help(void)
   printf("  LCD:\n");
   printf("    lcddemo:       shows hello world on the lcd display\n");
   printf("    display:       writes keyboard input directly to lcd display\n");
+  printf("    joy2display:   use the joystick to move the cursor on the display\n");
   printf("\n");
   printf("example usage: raspicommdemo --revision=2 --setoutputs\n");
   printf("\n");
@@ -66,6 +67,75 @@ void enter_display_type_mode()
   }
 }
 
+/// <summary>Enters the joystick to display mode, where you can move the cursor with the joystick buttons</summary>
+void enter_joystick_display_mode()
+{
+  Buttons buttons;
+  ApiResult result;
+
+  display_ClearScreen();
+
+  // start at the middle
+  char x = MAXCOLUMNS / 2;
+  char y = MAXROWS / 2;
+
+  char c = 'X';
+
+  // draw the cursor
+  display_SetXY(x, y);
+  display_PrintChar(c);
+
+  printf("JOYSTICK -> DISPLAY MODE: Use joystick to move, Press joystick to cancel\n");
+
+  while(1)
+  {
+    result = raspicomm_GetButtons(&buttons);
+
+    if (result == SUCCESS)
+    {
+      if (buttons != 0)
+      {
+        // draw over the old position
+        display_SetXY(x, y);
+        display_PrintChar(' ');
+
+        if ((buttons & Left) == Left) {
+          y++;
+          if (y > MAXROWS)
+            y = 0;        
+        } else if ((buttons & Right) == Right) {
+          if (y == 0)
+            y = MAXROWS;
+          else
+            y--;
+        } else if ((buttons & Down) == Down) {
+          x++;
+          if (x > MAXCOLUMNS)
+            x = 0;
+        } else if ((buttons & Up) == Up) {
+          if (x == 0)
+            x = MAXCOLUMNS;
+          else
+            x--;
+        }
+
+        if ((buttons & Pressed) == Pressed) {
+          // exit
+          break;
+        }
+
+        // move to the new position 
+        display_SetXY(x, y);
+
+        // draw the cursor
+        display_PrintChar(c);
+      }
+    }
+
+    usleep(50000);
+  }
+}
+
 /// <summary>Enters the general display mode</summary>
 void enter_display_mode()
 {
@@ -75,7 +145,7 @@ void enter_display_mode()
 
   while (1)
   {
-    printf("DISPLAY MODE: (q)uit, (-) display off, (+) display on, (i)nverse toggle, (t)ype, (c)lear screen\n");
+    printf("DISPLAY MODE: (q)uit, (-) display off, (+) display on, (i)nverse toggle, (j)oystick input, (t)ype, (c)lear screen\n");
 
     c = terminal_getchar();
 
@@ -86,6 +156,7 @@ void enter_display_mode()
       case '-': result = display_SendCommand(DI_CMD_DISPLAY_OFF); break;
       case '+': result = display_SendCommand(DI_CMD_DISPLAY_ON); break;
       case 'i': result = display_SendCommand(inverse ? DI_CMD_DISPLAY_INV_ON : DI_CMD_DISPLAY_INV_OFF); inverse = inverse ? 0 : 1; break;
+      case 'j':  enter_joystick_display_mode(); break;
       case 't': enter_display_type_mode(); break;
       case 'c': result = display_ClearScreen(); break;
     }
@@ -240,6 +311,10 @@ void execute_command(DEMOCMD c, char* arg)
       enter_display_type_mode(); 
       break;
 
+    case CMD_JOY2DISPLAY:
+      enter_joystick_display_mode();
+      break;
+
     case CMD_DISPLAY_MODE:
       enter_display_mode();
       break;
@@ -359,6 +434,7 @@ void handle_arguments(int argc, char** argv)
     {"leddemo",	     no_argument,		    0, CMD_LED_DEMO },
     {"lcddemo",      no_argument,       0, CMD_LCD_DEMO },
     {"display",	     no_argument,		    0, CMD_TYPE2DISPLAY },
+    {"joy2display",  no_argument,       0, CMD_JOY2DISPLAY },
     {0,              0,                 0, 0}
   };
 
