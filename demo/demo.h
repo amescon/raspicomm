@@ -61,7 +61,7 @@ enum
 #define MAXROWS 8
 
 /// <summary>Defines the maximum number of columns in the lcd display.</summary>
-#define MAXCOLUMNS 128
+#define MAXCOLUMNS 16
 
 /* forward declaration */
 void enter_interactive_mode(void);
