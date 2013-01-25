@@ -5,3 +5,4 @@ raspicommdemo
 package/daemon/debian/etc
 docs/out
 *.swp
+vs/
