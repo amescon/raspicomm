@@ -24,11 +24,11 @@ Additional Steps are required, see below
 
 #### Additional steps required for Raspbian ####
 
-1. Check that you're running the Kernel Version 3.2.27+:  
+1. Check that you're running the Kernel Version 3.2.27+ or 3.6.11+:  
    ``uname -r``
 2. Install the i2c-tools:  
    sudo apt-get install i2c-tools
-3. Edit /etc/modules and the following modules:  
+3. Edit /etc/modules and add the following modules:  
    - i2c-bcm2708
    - i2c-dev
 4. Load the modules:  
