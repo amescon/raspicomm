@@ -1,82 +1,18 @@
-# RasPiComm #
 
-This is the main readme file for the software of the raspicomm project.  
-If you want to know what the raspicomm is, you may want to take a look at the offical [blog](https://amesberger.wordpress.com/).
 
-## Getting Started ##
+_____
+### - OBSOLETE! - For reference purposes only! -  ###
 
-### Setup your distribution ###
+This is the outdated API for the raspicomm.  
+For up-to-date information please refer to our [getting started](http://www.amescon.com/products/getting-started.aspx) page. 
 
-*RaspiComm needs a distro that supports the i2c and the spi bus.*
-e.g. 
-[Adafruit Occidentalis v0.2](http://learn.adafruit.com/adafruit-raspberry-pi-educational-linux-distro/occidentalis-v0-dot-2)
+_____ 
 
-#### Distributions ####
-- Adafruit Occidentalis ([download the image](http://adafruit-raspberry-pi.s3.amazonaws.com/Occidentalisv02.zip))  
-- Raspbian v3.2.27+ ([download the image](http://downloads.raspberrypi.org/images/raspbian/2012-12-16-wheezy-raspbian/2012-12-16-wheezy-raspbian.zip))  
-Additional Steps are required, see below  
 
-1. Download the Image [here](http://adafruit-raspberry-pi.s3.amazonaws.com/Occidentalisv02.zip)  
-2. Write it to the SD card  
-   You can find further instructions for setting up your SD-Card [here](http://elinux.org/RPi_Easy_SD_Card_Setup).  
-3. Boot from the SD card  
-4. Configure your distribution on first boot
+  
 
-#### Additional steps required for Raspbian ####
-
-1. Check that you're running the Kernel Version 3.2.27+ or 3.6.11+:  
-   ``uname -r``
-2. Install the i2c-tools:  
-   sudo apt-get install i2c-tools
-3. Edit /etc/modules and add the following modules:  
-   - i2c-bcm2708
-   - i2c-dev
-4. Load the modules:  
-   ``sudo modprobe i2c-dev``  
-   ``sudo modprobe i2c-bcm2708``  
-
-*Thanks to Forum member CoolWater for the instructions!*
-
-### Setup your raspicomm ###
-
-Download the raspicomm source code, compile it, package it, install the packages with the following commands:  
-
-``git clone https://github.com/amescon/raspicomm.git``  
-``cd raspicomm``  
-``sudo ./makeall.sh``
-
-#### Selecting the raspberry pi revision ####
-When installing the raspicomm api, you are asked to specify the raspberry pi revision you are using, by entering '1' or '2'.
-
-If you're not sure which version you've got, take a look at the following pictures.
-e.g. Revision 2 sports a mounting hole in the top right corner, right below the leds.
-
-Picture of *Revision 1* from wikimedia.org:  
-<img width="320px" src="http://upload.wikimedia.org/wikipedia/commons/9/90/Front_of_Raspberry_Pi.jpg" />  
-Click [here](http://upload.wikimedia.org/wikipedia/commons/9/90/Front_of_Raspberry_Pi.jpg) to open the image.
-
-Picture of *Revision 2* from raspberrypi.org:  
-<img width="320px" src="http://www.raspberrypi.org/wp-content/uploads/2012/09/sony-rasp-pi-1024x728.jpg" />  
-Click [here](http://www.raspberrypi.org/wp-content/uploads/2012/09/sony-rasp-pi-1024x728.jpg) to open the image.
-
-### Test your installation ###
- - Verify if your real time clock is working by invoking:  
-   ``sudo hwclock -r``  
-
- - Use the raspicommdemo tool  
-   e.g. use ``sudo raspicommdemo --setoutputs`` to set the outputs. Both LEDs red & green should light up.  
-   ``sudo raspicommdemo --unsetoutputs`` disables the outputs again.
-
- - You may want to take a look at the other commandline options of the raspicommdemo.
-
-### Further information ###
-
-For further information you can
-
-- checkout the demo source code ('demo/demo.c') or from the github page or  
-- read the Api Overview below.  
-- visit the [support forum](http://www.amescon.com/forum.aspx?fwd=viewforum.php%3Ff%3D2)  
-- view the [FAQ on our forum](http://www.amescon.com/forum.aspx?fwd=viewtopic.php%3Ff%3D2%26t%3D14)  
+  
+  
 
 ## RasPiComm API Overview ##
 
